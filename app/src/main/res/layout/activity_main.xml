@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="android.develop.ct7liang.tools.activity.MainActivity">
+
+    <com.ct7liang.tangyuan.view_titlebar.TitleBarView
+        android:id="@+id/titleBarView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:title_bar_bg="@color/ThemeColor"
+        app:left_img_padding="17dp"
+        app:title="首页"
+        app:title_text_size="18sp">
+    </com.ct7liang.tangyuan.view_titlebar.TitleBarView>
+
+    <Button
+        android:id="@+id/weight"
+        android:text="体重数据"
+        app:layout_constraintTop_toBottomOf="@+id/titleBarView"
+        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/widget"
+        android:text="桌面控件"
+        app:layout_constraintTop_toBottomOf="@+id/weight"
+        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- 首页主题色 -->
+    <color name="ThemeColor">#28B8F7</color>
+
+    <!-- 体重主题色 -->
+    <color name="WeightColor">#FC6B03</color>
+
+</resources>
