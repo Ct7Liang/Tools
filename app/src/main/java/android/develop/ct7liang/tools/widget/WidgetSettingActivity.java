@@ -17,6 +17,8 @@ public class WidgetSettingActivity extends BaseActivity {
     private View second;
     private View minute;
     private View hour;
+    private int lastMin;
+    private int lastHour;
     private int currentMin;
     private int currentHour;
     private Handler handler = new Handler(){
@@ -24,33 +26,28 @@ public class WidgetSettingActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what){
-                case 0:
-                    //发送延迟一分钟的消息
-                    int i = (int) msg.obj;
-                    Message m = Message.obtain();
-                    m.obj = (i+1)%60;
-                    m.what = 0;
-                    sendMessageDelayed(m, 60000);
-                    //分针走1分
-                    rotateAnimMinute(i);
-                    break;
-                case 1:
-                    //收到消息,时针执行一次动画,走一小格,转动6度
-                    rotateAnimHour(currentMin, currentHour);
-                    //再次发送延迟12分钟的定时消息
-                    currentMin+=12;
-                    if (currentMin > 60 || currentMin == 60){
+                case 60:
+                    //再次发送延迟消息,延迟60s
+                    sendEmptyMessageDelayed(60, 60*1000);
+                    lastMin = currentMin;
+                    lastHour = currentHour;
+                    currentMin+=1;
+                    if (currentMin==60){
                         currentMin = 0;
                         currentHour+=1;
-                        if (currentHour > 12){
-                            currentHour = 1;
+                        if (lastHour==13){
+                            lastHour = 1;
                         }
                     }
-                    sendEmptyMessageDelayed(1, 12*60*1000);
+                    if (currentMin%12==0){
+                        rotateAnimHour();
+                    }
+                    rotateAnimMinute();
                     break;
             }
         }
     };
+    private Animation anim;
 
 
     @Override
@@ -74,32 +71,30 @@ public class WidgetSettingActivity extends BaseActivity {
 
     @Override
     public void initFinish() {
-        String format = new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date());
-        String[] split = format.split(":");
-//        String[] split = {"23", "59", "50"};
+        String[] split = new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()).split(":");
+//        String[] split = {"23", "59", "55"};
+
         int s = Integer.parseInt(split[2]);
         rotateAnimSecond(s);
 
         //获取当前分钟数
         currentMin = Integer.parseInt(split[1]);
-        //设置分针位置
-        setMinute(currentMin);
-        //等秒针走到60的时候,分针走动6刻度
-        Message mObtain = Message.obtain();
-        mObtain.what = 0;
-        mObtain.obj = currentMin;
-        //开启消息发送,一分钟分针走一次
-        handler.sendMessageDelayed(mObtain, (60-s)*1000);
-
         //获取当前小时数
         currentHour = Integer.parseInt(split[0]);
         currentHour = currentHour%12;
+
+        //设置分针位置
+        setMinute();
+        //等秒针走够60s的时候,发送延迟消息
+        handler.sendEmptyMessageDelayed(60, (60-s)*1000);
+
         //设置时针针位置
-        setHour(currentMin, currentHour);
+        setHour();
     }
 
     @Override
     public void onClick(View view) {}
+
 
     /**
      * 设置时针位置
@@ -107,60 +102,46 @@ public class WidgetSettingActivity extends BaseActivity {
      * 再由分钟数算出时针位于两个小时之间的具体位置
      * 每十二分钟,时针走一小格(6度)
      */
-    public void setHour(int m, int h){
-        int m0 = m/12;
-        Animation anim = new RotateAnimation(0f, h*30+m0*6, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1f);
+    public void setHour(){
+        int m0 = currentMin/12;
+        Animation anim = new RotateAnimation(0f, currentHour*30+m0*6, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1f);
         anim.setFillAfter(true); // 设置保持动画最后的状态
         anim.setDuration(1); // 设置动画时间
         hour.startAnimation(anim);
+    }
+    /**
+     * 设置分针位置
+     */
+    public void setMinute(){
+        Animation anim = new RotateAnimation(0f, currentMin*6, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1f);
+        anim.setFillAfter(true); // 设置保持动画最后的状态
+        anim.setDuration(1); // 设置动画时间
+        minute.startAnimation(anim);
     }
     /**
      * 时针走一小格
      */
-    public void rotateAnimHour(int cmin, int chour) {
-        int nMin = cmin+12;
-        int nHour = chour;
-        if (nMin==60){
-            nMin = 0;
-            nHour+=1;
-            if (nHour>12){
-                nHour=1;
-            }
-        }
-        Animation anim = new RotateAnimation(
-                chour*30+(cmin/12)*6,
-                nHour*30+(nMin/12)*6,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1f);
+    public void rotateAnimHour() {
+        Animation anim = new RotateAnimation(lastHour * 30 + (lastMin / 12) * 6, currentHour * 30 + (currentMin / 12) * 6, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1f);
         anim.setFillAfter(true); // 设置保持动画最后的状态
         anim.setDuration(50); // 设置动画时间
         anim.setInterpolator(new LinearInterpolator()); // 设置插入器
         hour.startAnimation(anim);
     }
-
-
-
-    /**
-     * 设置分针位置
-     */
-    public void setMinute(int m){
-        Animation anim = new RotateAnimation(0f, m*6, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1f);
-        anim.setFillAfter(true); // 设置保持动画最后的状态
-        anim.setDuration(1); // 设置动画时间
-        minute.startAnimation(anim);
-    }
     /**
      * 分钟走一格
-     * @param m 当前分钟数
      */
-    public void rotateAnimMinute(int m) {
-        m = m%60;
-        Animation anim = new RotateAnimation(m*6, (m+1)*6, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1f);
+    public void rotateAnimMinute() {
+        int i1 = currentMin * 6;
+        if (i1 == 0){
+            i1 = 360;
+        }
+        anim = new RotateAnimation(lastMin * 6, i1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1f);
         anim.setFillAfter(true); // 设置保持动画最后的状态
         anim.setDuration(50); // 设置动画时间
         anim.setInterpolator(new LinearInterpolator()); // 设置插入器
         minute.startAnimation(anim);
     }
-
     /**
      * 秒针走一格
      * @param s 当前秒数
