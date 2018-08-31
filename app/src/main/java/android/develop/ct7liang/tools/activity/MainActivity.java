@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.develop.ct7liang.tools.R;
 import android.develop.ct7liang.tools.base.BaseActivity;
 import android.develop.ct7liang.tools.weight.SettingActivity;
+import android.develop.ct7liang.tools.widget.WidgetSettingActivity;
 import android.view.View;
 import com.ct7liang.tangyuan.view_titlebar.TitleBarView;
 
@@ -49,6 +50,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(mAct, SettingActivity.class));
                 break;
             case R.id.widget:
+                startActivity(new Intent(mAct, WidgetSettingActivity.class));
                 break;
         }
     }

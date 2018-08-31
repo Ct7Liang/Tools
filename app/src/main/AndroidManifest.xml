@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".weight.SettingActivity" />
-        <activity android:name=".weight.ChartActivity"></activity>
+        <activity android:name=".weight.ChartActivity" />
+        <activity android:name=".widget.WidgetSettingActivity"></activity>
     </application>
 
 </manifest>

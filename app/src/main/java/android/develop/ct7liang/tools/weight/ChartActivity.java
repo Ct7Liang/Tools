@@ -1,12 +1,12 @@
 package android.develop.ct7liang.tools.weight;
 
+
 import android.develop.ct7liang.tools.R;
 import android.develop.ct7liang.tools.activity.ToolsConstant;
 import android.develop.ct7liang.tools.base.BaseActivity;
 import android.develop.ct7liang.tools.bean.Weight;
 import android.graphics.Color;
 import android.view.View;
-
 import com.ct7liang.tangyuan.utils.SpUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -17,13 +17,11 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import tools.greendao.gen.GreenDaoHelper;
 import tools.greendao.gen.WeightDao;
 
@@ -42,6 +40,7 @@ public class ChartActivity extends BaseActivity {
     @Override
     public void findView() {
         setOrientation(false);
+        setFullScreen();
         lineChart = findViewById(R.id.line_chart);
         initStatusBar();
     }
@@ -50,24 +49,26 @@ public class ChartActivity extends BaseActivity {
     public void initData() {
         weightDao = GreenDaoHelper.getDaoSession().getWeightDao();
         weights = weightDao.loadAll();
-        if (weights.size() > 0){
-            Weight weight = weights.get(weights.size() - 1);
-            String timeFormat = weight.getTimeFormat();
-            String format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(new Date(System.currentTimeMillis()));
-            if (timeFormat.equals(format)){
-                //数据完整
-            }else{
-                //可判断出 数据不完整
-                String[] split = timeFormat.split("-");
-                int i = Integer.parseInt(split[2]);
-                String[] split2 = format.split("-");
-                int i2 = Integer.parseInt(split2[2]);
-                for (int j = 0; j < i2 - i; j++) {
-                    weightDao.insert(weight);
-                    weights.add(weight);
-                }
-            }
-        }
+
+//        if (weights.size() > 0){
+//            Weight weight = weights.get(weights.size() - 1);
+//            String timeFormat = weight.getTimeFormat();
+//            String format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(new Date(System.currentTimeMillis()));
+//            if (timeFormat.equals(format)){
+//                //数据完整
+//            }else{
+//                //可判断出 数据不完整
+//                String[] split = timeFormat.split("-");
+//                int i = Integer.parseInt(split[2]);
+//                String[] split2 = format.split("-");
+//                int i2 = Integer.parseInt(split2[2]);
+//                for (int j = 0; j < i2 - i; j++) {
+//                    Weight w = new Weight(null, System.currentTimeMillis(), )
+//                    weightDao.insert(new Weight(null, ));
+//                    weights.add(weight);
+//                }
+//            }
+//        }
 
         List<Entry> lists = new ArrayList<>();
         if (weights.size()!=0){
