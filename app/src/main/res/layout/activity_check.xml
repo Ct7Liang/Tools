@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="android.develop.ct7liang.tools.module_check.CheckActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.ct7liang.tangyuan.view_titlebar.TitleBarView
+            android:id="@+id/titleBarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title_bar_bg="@color/CheckColor"
+            app:left_img_padding="16dp"
+            app:title_gravity="center"
+            app:title_text_size="17sp"
+            app:title="账单"
+            app:right_img_src="@mipmap/more"
+            app:right_img_padding="16dp">
+        </com.ct7liang.tangyuan.view_titlebar.TitleBarView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:background="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <TextView
+        android:text="暂无数据"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:id="@+id/total"
+        android:layout_width="135dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/check_bottom_view"/>
+
+</RelativeLayout>

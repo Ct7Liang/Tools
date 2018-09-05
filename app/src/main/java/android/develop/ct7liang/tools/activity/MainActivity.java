@@ -3,11 +3,12 @@ package android.develop.ct7liang.tools.activity;
 import android.content.Intent;
 import android.develop.ct7liang.tools.R;
 import android.develop.ct7liang.tools.base.BaseActivity;
-import android.develop.ct7liang.tools.weight.SettingActivity;
-import android.develop.ct7liang.tools.widget.WidgetSettingActivity;
+import android.develop.ct7liang.tools.module_check.CheckActivity;
+import android.develop.ct7liang.tools.module_weight.SettingActivity;
+import android.develop.ct7liang.tools.module_widget.WidgetSettingActivity;
 import android.view.View;
-import com.ct7liang.tangyuan.view_titlebar.TitleBarView;
 
+import com.ct7liang.tangyuan.view_titlebar.TitleBarView;
 
 public class MainActivity extends BaseActivity {
 
@@ -36,6 +37,7 @@ public class MainActivity extends BaseActivity {
     public void initView() {
         findViewById(R.id.weight).setOnClickListener(this);
         findViewById(R.id.widget).setOnClickListener(this);
+        findViewById(R.id.check).setOnClickListener(this);
     }
 
     @Override
@@ -51,6 +53,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.widget:
                 startActivity(new Intent(mAct, WidgetSettingActivity.class));
+                break;
+            case R.id.check:
+                startActivity(new Intent(mAct, CheckActivity.class));
                 break;
         }
     }

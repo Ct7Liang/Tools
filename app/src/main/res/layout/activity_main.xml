@@ -31,10 +31,20 @@
 
     <Button
         android:id="@+id/widget"
-        android:text="桌面控件"
+        android:text="widget"
         app:layout_constraintTop_toBottomOf="@+id/weight"
         android:layout_height="48dp"
         android:layout_width="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/check"
+        android:text="check"
+        app:layout_constraintTop_toBottomOf="@id/widget"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

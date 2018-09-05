@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="android.develop.ct7liang.tools.weight.SettingActivity">
+    tools:context="android.develop.ct7liang.tools.module_weight.SettingActivity">
 
     <com.ct7liang.tangyuan.view_titlebar.TitleBarView
         android:id="@+id/titleBarView"

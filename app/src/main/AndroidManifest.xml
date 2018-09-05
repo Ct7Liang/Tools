@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.develop.ct7liang.tools">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:name=".base.BaseApp"
         android:allowBackup="true"
@@ -10,7 +13,9 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashActivity">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/Theme.MyAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,9 +23,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".weight.SettingActivity" />
-        <activity android:name=".weight.ChartActivity" />
-        <activity android:name=".widget.WidgetSettingActivity"></activity>
+        <activity android:name=".module_weight.SettingActivity" />
+        <activity android:name=".module_weight.ChartActivity" />
+        <activity android:name=".module_widget.WidgetSettingActivity" />
+        <activity android:name=".module_check.CheckActivity" />
     </application>
 
 </manifest>

@@ -10,4 +10,7 @@
     <!-- 体重主题色 -->
     <color name="WeightColor">#FC6B03</color>
 
+    <!-- 账单主题色 -->
+    <color name="CheckColor">#D53B3D</color>
+
 </resources>

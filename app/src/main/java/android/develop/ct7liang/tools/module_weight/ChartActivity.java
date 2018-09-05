@@ -1,4 +1,4 @@
-package android.develop.ct7liang.tools.weight;
+package android.develop.ct7liang.tools.module_weight;
 
 
 import android.develop.ct7liang.tools.R;

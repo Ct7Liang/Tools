@@ -5,6 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="android.develop.ct7liang.tools.module_widget.WidgetSettingActivity">
+    tools:context="android.develop.ct7liang.tools.module_widget.ConstraintLayoutActivity">
 
 </android.support.constraint.ConstraintLayout>
