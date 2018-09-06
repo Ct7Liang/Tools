@@ -1,6 +1,7 @@
 package android.develop.ct7liang.tools.module_check;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.develop.ct7liang.tools.R;
 import android.develop.ct7liang.tools.base.BaseActivity;
 import android.develop.ct7liang.tools.bean.Check;
@@ -15,13 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ct7liang.tangyuan.recyclerview.OnItemLongClickListener;
-import com.ct7liang.tangyuan.utils.ToastUtils;
 import com.ct7liang.tangyuan.view_titlebar.TitleBarView;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
 import tools.greendao.gen.CheckDao;
 import tools.greendao.gen.GreenDaoHelper;
 
@@ -33,6 +34,7 @@ public class CheckActivity extends BaseActivity implements OnItemLongClickListen
     private List<Check> checks;
     private CheckAdapter checkAdapter;
     private Dialog dialog;
+    private Dialog dialog_delete;
     //标记,是否是收入
     private boolean isComing = false;
     private TextView type;
@@ -40,7 +42,6 @@ public class CheckActivity extends BaseActivity implements OnItemLongClickListen
     private EditText desc;
     private TextView total;
     //当前月份账单集合
-    private ArrayList<Check> list;
 
     @Override
     public int setLayout() {
@@ -53,6 +54,7 @@ public class CheckActivity extends BaseActivity implements OnItemLongClickListen
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
         total = findViewById(R.id.total);
+        total.setOnClickListener(this);
     }
 
     @Override
@@ -74,7 +76,6 @@ public class CheckActivity extends BaseActivity implements OnItemLongClickListen
         checkAdapter = new CheckAdapter(this, checks);
         checkAdapter.setOnItemLongClickListener(this);
         recyclerView.setAdapter(checkAdapter);
-        list = new ArrayList<>();
     }
 
     @Override
@@ -86,27 +87,6 @@ public class CheckActivity extends BaseActivity implements OnItemLongClickListen
     public void initFinish() {
         getTotal();
     }
-
-    private void getTotal() {
-        if (checks.size()!=0){
-            int tag =  checks.get(checks.size() - 1).getMonth();
-            float totalnum = 0;
-            for (int i = checks.size()-1; i > -1; i--) {
-                Check check = checks.get(i);
-                int month = check.getMonth();
-                if (tag != month){
-                    break;
-                }
-                if (check.getType()==1){
-                    totalnum += check.getCash();
-                }else{
-                    totalnum -= check.getCash();
-                }
-            }
-            total.setText(String.valueOf(tag + "月: " + totalnum));
-        }
-    }
-
 
     @Override
     public void onClick(View view) {
@@ -136,9 +116,22 @@ public class CheckActivity extends BaseActivity implements OnItemLongClickListen
                 checkAdapter.notifyDataSetChanged();
                 getTotal();
                 break;
+            case R.id.total:
+                startActivity(new Intent(this, MonthCheckActivity.class));
+                break;
         }
     }
 
+    private int onLongClickPoi;
+    @Override
+    public void onLongClick(View view, int i) {
+        onLongClickPoi = i;
+        showDeleteDialog(i);
+    }
+
+    /**
+     * 显示添加账单弹窗
+     */
     private void showAddDialog(){
         if (dialog==null){
             dialog = new Dialog(this);
@@ -155,8 +148,59 @@ public class CheckActivity extends BaseActivity implements OnItemLongClickListen
         dialog.show();
     }
 
-    @Override
-    public void onLongClick(View view, int i) {
-        ToastUtils.showStatic(this, checks.get(i).cash+"");
+    /**
+     * 显示确认删除账单弹窗
+     */
+    private void showDeleteDialog(final int position){
+        if (dialog_delete==null){
+            dialog_delete = new Dialog(this);
+            dialog_delete.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            View contentView = View.inflate(this, R.layout.dialog_delete_check_item, null);
+            contentView.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    checkDao.delete(checks.get(onLongClickPoi));
+                    dialog_delete.dismiss();
+                    checks.remove(onLongClickPoi);
+                    checkAdapter.notifyDataSetChanged();
+                    getTotal();
+                }
+            });
+            contentView.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog_delete.dismiss();
+                }
+            });
+            dialog_delete.addContentView(contentView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            dialog_delete.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+        dialog_delete.show();
     }
+
+    /**
+     * 获取当月总金额
+     */
+    private void getTotal() {
+        if (checks.size()!=0){
+            int tag =  checks.get(checks.size() - 1).getMonth();
+            float totalnum = 0;
+            for (int i = checks.size()-1; i > -1; i--) {
+                Check check = checks.get(i);
+                int month = check.getMonth();
+                if (tag != month){
+                    break;
+                }
+                if (check.getType()==1){
+                    totalnum += check.getCash();
+                }else{
+                    totalnum -= check.getCash();
+                }
+            }
+            total.setText(String.valueOf(tag + "月: " + totalnum));
+        }else{
+            total.setText(String.valueOf("暂无数据"));
+        }
+    }
+
 }

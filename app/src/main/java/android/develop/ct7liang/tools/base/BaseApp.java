@@ -18,7 +18,7 @@ public class BaseApp extends Application {
         super.onCreate();
 
         SpUtils.init(this);
-        LogUtils.setTag("tools");
+        LogUtils.setTag("ct7liang");
         LogUtils.setLogEnable(true);
         AppFolder.createAppFolder("A_tools");
         CrashUtils.init(this, true, "App运行错误");

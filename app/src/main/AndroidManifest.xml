@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.develop.ct7liang.tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".base.BaseApp"
@@ -27,6 +27,8 @@
         <activity android:name=".module_weight.ChartActivity" />
         <activity android:name=".module_widget.WidgetSettingActivity" />
         <activity android:name=".module_check.CheckActivity" />
+        <activity android:name=".module_check.MonthCheckActivity" />
+        <activity android:name=".module_check.DateCheckActivity"></activity>
     </application>
 
 </manifest>

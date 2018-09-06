@@ -1,16 +1,16 @@
 package android.develop.ct7liang.tools.bean;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
-import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Administrator on 2018-09-05.
  *
  */
 @Entity
-public class Check {
+public class Check{
 
     @Id(autoincrement = true)
     public Long id;

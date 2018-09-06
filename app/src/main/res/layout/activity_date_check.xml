@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="android.develop.ct7liang.tools.module_check.DateCheckActivity">
+
+    <com.ct7liang.tangyuan.view_titlebar.TitleBarView
+        android:id="@+id/titleBarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_bar_bg="@color/CheckColor"
+        app:left_img_padding="16dp"
+        app:title_gravity="start"
+        app:title_text_size="17sp"
+        app:title="日视图">
+    </com.ct7liang.tangyuan.view_titlebar.TitleBarView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
+
