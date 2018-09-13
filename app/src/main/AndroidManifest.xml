@@ -28,7 +28,17 @@
         <activity android:name=".module_widget.WidgetSettingActivity" />
         <activity android:name=".module_check.CheckActivity" />
         <activity android:name=".module_check.MonthCheckActivity" />
-        <activity android:name=".module_check.DateCheckActivity"></activity>
+        <activity android:name=".module_check.DateCheckActivity" />
+
+        <receiver android:name=".module_widget.AppTextWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.develop.ct7liang.zdd"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_text_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

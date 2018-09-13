@@ -73,6 +73,16 @@ public class CheckActivity extends BaseActivity implements OnItemLongClickListen
     public void initData() {
         checkDao = GreenDaoHelper.getDaoSession().getCheckDao();
         checks = checkDao.loadAll();
+
+//        File file = new File(AppFolder.get().getPath(), "check.txt");
+//        String read = FileUtils.read(file);
+//        read = "{\"datas\":" + read + "}";
+//        Checks cs = new Gson().fromJson(read, Checks.class);
+//        for (int i = 0; i < cs.getDatas().size(); i++) {
+//            checkDao.insert(cs.getDatas().get(i));
+//        }
+//        checks.addAll(cs.getDatas());
+
         checkAdapter = new CheckAdapter(this, checks);
         checkAdapter.setOnItemLongClickListener(this);
         recyclerView.setAdapter(checkAdapter);
