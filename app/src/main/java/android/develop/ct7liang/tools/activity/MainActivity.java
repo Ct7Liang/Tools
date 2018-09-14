@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.develop.ct7liang.tools.R;
 import android.develop.ct7liang.tools.base.BaseActivity;
 import android.develop.ct7liang.tools.module_check.CheckActivity;
+import android.develop.ct7liang.tools.module_creditCard.CreditCardActivity;
 import android.develop.ct7liang.tools.module_weight.SettingActivity;
 import android.develop.ct7liang.tools.module_widget.WidgetSettingActivity;
 import android.view.View;
@@ -38,6 +39,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.weight).setOnClickListener(this);
         findViewById(R.id.widget).setOnClickListener(this);
         findViewById(R.id.check).setOnClickListener(this);
+        findViewById(R.id.credit).setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +58,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.check:
                 startActivity(new Intent(mAct, CheckActivity.class));
+                break;
+            case R.id.credit:
+                startActivity(new Intent(mAct, CreditCardActivity.class));
                 break;
         }
     }

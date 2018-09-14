@@ -31,7 +31,7 @@ public class AppTextWidget extends AppWidgetProvider {
         textBeanDao = GreenDaoHelper.getDaoSession().getTextBeanDao();
         textBeen = textBeanDao.loadAll();
         int size = textBeen.size();
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.app_text_widget);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.app_text_widget2);
         if (size == 0){
             views.setTextViewText(R.id.text, "");
             views.setTextViewText(R.id.text1, "");
@@ -53,7 +53,7 @@ public class AppTextWidget extends AppWidgetProvider {
             Intent i = new Intent(TAG);
             i.putExtra("id", appWidgetId);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 2, i, PendingIntent.FLAG_CANCEL_CURRENT);
-            views.setOnClickPendingIntent(R.id.img, pendingIntent);
+            views.setOnClickPendingIntent(R.id.text, pendingIntent);
         }
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
@@ -81,7 +81,7 @@ public class AppTextWidget extends AppWidgetProvider {
             textBeen = textBeanDao.loadAll();
         }
         if(TextUtils.equals(TAG, intent.getAction())){
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.app_text_widget);
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.app_text_widget2);
             position++;
             if (position==textBeen.size()){
                 position = 0;

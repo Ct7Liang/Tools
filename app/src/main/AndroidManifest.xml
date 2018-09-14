@@ -33,12 +33,15 @@
         <receiver android:name=".module_widget.AppTextWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.develop.ct7liang.zdd"/>
+                <action android:name="android.develop.ct7liang.zdd" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/app_text_widget_info" />
         </receiver>
+
+        <activity android:name=".module_creditCard.CreditCardActivity"></activity>
     </application>
 
 </manifest>
