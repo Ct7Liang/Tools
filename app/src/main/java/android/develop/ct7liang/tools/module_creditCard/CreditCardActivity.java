@@ -1,9 +1,11 @@
 package android.develop.ct7liang.tools.module_creditCard;
 
+import android.content.Intent;
 import android.develop.ct7liang.tools.R;
 import android.develop.ct7liang.tools.base.BaseActivity;
-import android.develop.ct7liang.tools.bean.CreditCardBean;
 import android.view.View;
+
+import com.ct7liang.tangyuan.view_titlebar.TitleBarView;
 
 public class CreditCardActivity extends BaseActivity {
 
@@ -14,12 +16,24 @@ public class CreditCardActivity extends BaseActivity {
 
     @Override
     public void findView() {
+        initStatusBar();
+    }
 
+    @Override
+    protected void setStatusBar() {
+        TitleBarView titleBarView = findViewById(R.id.titleBarView);
+        titleBarView.setStatusBar(this);
+        titleBarView.setOnRightImgClick(new TitleBarView.OnRightImgClick() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mAct, CreditCardAddActivity.class));
+            }
+        });
     }
 
     @Override
     public void initData() {
-        CreditCardBean c1 = new CreditCardBean(22, 1, 21, 1, 9);
+
     }
 
     @Override

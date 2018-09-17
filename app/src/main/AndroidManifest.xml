@@ -41,7 +41,8 @@
                 android:resource="@xml/app_text_widget_info" />
         </receiver>
 
-        <activity android:name=".module_creditCard.CreditCardActivity"></activity>
+        <activity android:name=".module_creditCard.CreditCardActivity" />
+        <activity android:name=".module_creditCard.CreditCardAddActivity"></activity>
     </application>
 
 </manifest>
