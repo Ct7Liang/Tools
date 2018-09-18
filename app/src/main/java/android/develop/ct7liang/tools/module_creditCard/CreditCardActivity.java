@@ -99,9 +99,13 @@ public class CreditCardActivity extends BaseActivity implements OnItemClickListe
 
     @Override
     public void onItemClick(View view, int i) {
-
+        initTop(creditCardBeen.get(i));
     }
 
+    /**
+     * 设置信用卡头布局
+     * @param cardBean
+     */
     private void initTop(CreditCardBean cardBean){
         //设置图片
         int i = Arrays.binarySearch(creditInfo.tag, cardBean.getTag());
@@ -120,9 +124,9 @@ public class CreditCardActivity extends BaseActivity implements OnItemClickListe
         //设置有效期
         int cardMonth = cardBean.cardMonth;
         if (cardMonth<10){
-            endTime.setText(cardBean.cardYear+"-0"+cardMonth);
+            endTime.setText(cardBean.cardYear+"/0"+cardMonth);
         }else{
-            endTime.setText(cardBean.cardYear+"-"+cardMonth);
+            endTime.setText(cardBean.cardYear+"/"+cardMonth);
         }
         //设置周期
         //设置日期
@@ -132,8 +136,49 @@ public class CreditCardActivity extends BaseActivity implements OnItemClickListe
 
         boolean isKuayue = returnDay<=endDay;
 
-        String format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(new Date());
+        String format = new SimpleDateFormat("yyyy-M-d", Locale.CHINA).format(new Date());
         String[] split = format.split("-");
 
+        if (Integer.parseInt(split[2])>=startDay){
+            int i1 = Integer.parseInt(split[1]) + 1;
+            int i2 = Integer.parseInt(split[0]);
+            if (i1>12){
+                i1 = 1;
+                i2 = i2+1;
+            }
+            recycleDate.setText(split[0]+"-"+split[1]+"-"+startDay + "\n" + i2+"-"+i1+"-"+endDay);
+            if (isKuayue){
+                int i3 = i2;
+                int i4 = i1;
+                i4++;
+                if (i4==13){
+                    i4 = 1;
+                    i3 = i3+1;
+                }
+                returnDate.setText(i3+"-"+i4+"-"+returnDay);
+            }else{
+                returnDate.setText(i2+"-"+i1+"-"+returnDay);
+            }
+        }else{
+            int i1 = Integer.parseInt(split[1]) - 1;
+            int i2 = Integer.parseInt(split[0]);
+            if (i1==0){
+                i1 = 12;
+                i2 = i2 -1;
+            }
+            recycleDate.setText(i2+"-"+i1+"-"+startDay+"\n"+split[0]+"-"+split[1]+"-"+endDay);
+            if (isKuayue){
+                int i3 = Integer.parseInt(split[0]);
+                int i4 = Integer.parseInt(split[1]);
+                i4++;
+                if (i4 == 13){
+                    i4 = 1;
+                    i3 = i3 + 1;
+                }
+                returnDate.setText(i3+"-"+i4+"-"+returnDay);
+            }else{
+                returnDate.setText(split[0]+"-"+split[1]+"-"+returnDay);
+            }
+        }
     }
 }

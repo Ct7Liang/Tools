@@ -8,7 +8,6 @@ import android.develop.ct7liang.tools.module_creditCard.CreditCardActivity;
 import android.develop.ct7liang.tools.module_weight.SettingActivity;
 import android.develop.ct7liang.tools.module_widget.WidgetSettingActivity;
 import android.view.View;
-
 import com.ct7liang.tangyuan.view_titlebar.TitleBarView;
 
 public class MainActivity extends BaseActivity {
