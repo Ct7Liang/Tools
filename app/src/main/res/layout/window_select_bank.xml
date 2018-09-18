@@ -4,9 +4,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="@drawable/credit_popup_window_select_bank_bg"
+    android:padding="8dp">
     <ListView
         android:id="@+id/list_view"
+        android:divider="@null"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none">

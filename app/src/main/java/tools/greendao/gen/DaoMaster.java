@@ -24,6 +24,7 @@ public class DaoMaster extends AbstractDaoMaster {
         CheckDao.createTable(db, ifNotExists);
         TextBeanDao.createTable(db, ifNotExists);
         WeightDao.createTable(db, ifNotExists);
+        CreditCardBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -31,6 +32,7 @@ public class DaoMaster extends AbstractDaoMaster {
         CheckDao.dropTable(db, ifExists);
         TextBeanDao.dropTable(db, ifExists);
         WeightDao.dropTable(db, ifExists);
+        CreditCardBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -52,6 +54,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(CheckDao.class);
         registerDaoClass(TextBeanDao.class);
         registerDaoClass(WeightDao.class);
+        registerDaoClass(CreditCardBeanDao.class);
     }
 
     public DaoSession newSession() {

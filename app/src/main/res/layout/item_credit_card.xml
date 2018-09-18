@@ -2,31 +2,29 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="65dp"
+    android:gravity="center_horizontal">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/credit_img"
+        android:src="@mipmap/credit_zs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView
-            android:id="@+id/credit_img"
-            android:src="@mipmap/credit_zs"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
-        <TextView
-            android:id="@+id/credit_text"
-            android:text="招商银行"
-            android:gravity="center"
-            android:textSize="13sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="5dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#DDDDDD"/>
-    </LinearLayout>
+        android:layout_height="45dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="2dp"/>
+    <TextView
+        android:layout_below="@id/credit_img"
+        android:id="@+id/credit_text"
+        android:text="招商银行"
+        android:gravity="center|top"
+        android:textSize="12sp"
+        android:textColor="#444444"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#DDDDDD"/>
 
 </RelativeLayout>

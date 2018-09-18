@@ -25,22 +25,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:paddingTop="15dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:orientation="horizontal">
+                android:layout_height="55dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp">
                 <ImageView
+                    android:id="@+id/bank_icon"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:padding="3dp"/>
+                    android:padding="3dp"
+                    android:src="@drawable/credit_select_bank_icon_default"/>
                 <TextView
                     android:id="@+id/bank_name"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:paddingLeft="15dp"
+                    android:paddingLeft="5dp"
                     android:textSize="14sp"
                     android:text="请选择银行名称"
                     android:gravity="center|start"/>
@@ -49,120 +54,157 @@
                 android:layout_width="match_parent"
                 android:layout_height="2px"
                 android:background="#DDDDDD"/>
-            <EditText
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@null"
-                android:hint="请输入信用卡卡号"
-                android:textSize="14sp"
-                android:paddingLeft="15dp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#DDDDDD"/>
-            <EditText
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@null"
-                android:hint="账单起始日期"
-                android:textSize="14sp"
-                android:paddingLeft="15dp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#DDDDDD"/>
-            <RadioGroup
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:orientation="horizontal">
-                <RadioButton
-                    android:layout_marginLeft="15dp"
-                    android:text="账单周期跨月"
-                    android:textSize="13sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp" />
-                <RadioButton
-                    android:layout_marginLeft="15dp"
-                    android:text="账单周期没有跨月"
-                    android:textSize="13sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp" />
-            </RadioGroup>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="信用卡卡号："
+                    android:gravity="center"/>
+                <EditText
+                    android:id="@+id/cardNum"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:textSize="14sp"
+                    android:paddingLeft="15dp"/>
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2px"
                 android:background="#DDDDDD"/>
-            <EditText
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@null"
-                android:hint="账单结束日期"
-                android:textSize="14sp"
-                android:paddingLeft="15dp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#DDDDDD"/>
-            <RadioGroup
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:orientation="horizontal">
-                <RadioButton
-                    android:layout_marginLeft="15dp"
-                    android:text="还款日期跨月"
-                    android:textSize="13sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp" />
-                <RadioButton
-                    android:layout_marginLeft="15dp"
-                    android:text="还款日期没有跨月"
-                    android:textSize="13sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp" />
-            </RadioGroup>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="账单起始日期："
+                    android:gravity="center"/>
+                <EditText
+                    android:id="@+id/startDay"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:textSize="14sp"
+                    android:paddingLeft="15dp"/>
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2px"
                 android:background="#DDDDDD"/>
-            <EditText
-                android:inputType="number"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="@null"
-                android:hint="最迟还款日期"
-                android:textSize="14sp"
-                android:paddingLeft="15dp"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="账单结束日期："
+                    android:gravity="center"/>
+                <EditText
+                    android:id="@+id/endDay"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:textSize="14sp"
+                    android:paddingLeft="15dp"/>
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2px"
                 android:background="#DDDDDD"/>
-            <EditText
-                android:inputType="number"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="@null"
-                android:hint="卡片有效期(年)"
-                android:textSize="14sp"
-                android:paddingLeft="15dp"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="最迟还款日期："
+                    android:gravity="center"/>
+                <EditText
+                    android:id="@+id/returnDay"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:textSize="14sp"
+                    android:paddingLeft="15dp"/>
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2px"
                 android:background="#DDDDDD"/>
-            <EditText
-                android:inputType="number"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="@null"
-                android:hint="卡片有效期(月)"
-                android:textSize="14sp"
-                android:paddingLeft="15dp"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="卡片有效期(年)："
+                    android:gravity="center"/>
+                <EditText
+                    android:id="@+id/cardYear"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:textSize="14sp"
+                    android:paddingLeft="15dp"/>
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2px"
                 android:background="#DDDDDD"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="卡片有效期(月)："
+                    android:gravity="center"/>
+                <EditText
+                    android:id="@+id/cardMonth"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:textSize="14sp"
+                    android:paddingLeft="15dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="#DDDDDD"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -170,10 +212,11 @@
                 android:background="@drawable/commit_bg"
                 android:text="确定"
                 android:textSize="15sp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:textColor="#FFFFFF"
                 android:id="@+id/commit"/>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -8,9 +8,7 @@ import android.develop.ct7liang.tools.R;
  */
 public class CreditInfo {
 
-    private CreditInfo(){
-
-    }
+    private CreditInfo(){}
     private static CreditInfo creditInfo;
     public static CreditInfo getInstance(){
         if (creditInfo == null){
@@ -38,5 +36,12 @@ public class CreditInfo {
             R.mipmap.credit_jt_01,
             R.mipmap.credit_gf_01,
             R.mipmap.credit_zx_01,
+    };
+
+    public int[] tag = {
+            0,
+            1,
+            2,
+            3,
     };
 }
