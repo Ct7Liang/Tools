@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ct7liang.tangyuan.recyclerview.OnItemClickListener;
+import com.ct7liang.tangyuan.utils.ToastUtils;
 import com.ct7liang.tangyuan.view_titlebar.TitleBarView;
 
 import java.text.SimpleDateFormat;
@@ -24,7 +25,7 @@ import java.util.Locale;
 import tools.greendao.gen.CreditCardBeanDao;
 import tools.greendao.gen.GreenDaoHelper;
 
-public class CreditCardActivity extends BaseActivity implements OnItemClickListener {
+public class CreditCardActivity extends BaseActivity implements OnItemClickListener, View.OnLongClickListener {
 
 
     private RecyclerView creditList;               //控件: 银行卡列表
@@ -39,6 +40,7 @@ public class CreditCardActivity extends BaseActivity implements OnItemClickListe
     private TextView endTime;       //有效期
 
     private CreditInfo creditInfo;
+    private boolean isReturnable;
 
     @Override
     public int setLayout() {
@@ -56,6 +58,8 @@ public class CreditCardActivity extends BaseActivity implements OnItemClickListe
         recycleDate = findViewById(R.id.recycleDate);
         returnDate = findViewById(R.id.returnDay);
         endTime = findViewById(R.id.endTime);
+
+        findViewById(R.id.card).setOnLongClickListener(this);
     }
 
     @Override
@@ -100,6 +104,16 @@ public class CreditCardActivity extends BaseActivity implements OnItemClickListe
     @Override
     public void onItemClick(View view, int i) {
         initTop(creditCardBeen.get(i));
+    }
+
+    @Override
+    public boolean onLongClick(View view) {
+        if (isReturnable){
+            ToastUtils.showStatic(mAct, "当前处于还款周期内");
+        }else{
+            ToastUtils.showStatic(mAct, "当前未处于还款周期内");
+        }
+        return false;
     }
 
     /**
@@ -180,5 +194,14 @@ public class CreditCardActivity extends BaseActivity implements OnItemClickListe
                 returnDate.setText(split[0]+"-"+split[1]+"-"+returnDay);
             }
         }
+
+        int i1 = Integer.parseInt(split[2]);
+        if (i1>endDay || i1<=returnDay){
+            isReturnable = true;
+        }else{
+            isReturnable = false;
+        }
     }
+
+
 }

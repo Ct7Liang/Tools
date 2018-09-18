@@ -38,6 +38,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:background="@drawable/credit_crad_bg"
