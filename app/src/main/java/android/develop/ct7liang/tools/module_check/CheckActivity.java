@@ -51,15 +51,15 @@ public class CheckActivity extends BaseActivity implements OnItemLongClickListen
     @Override
     public void findView() {
         initStatusBar();
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
-        total = findViewById(R.id.total);
+        total = (TextView) findViewById(R.id.total);
         total.setOnClickListener(this);
     }
 
     @Override
     protected void setStatusBar() {
-        TitleBarView titleBarView = findViewById(R.id.titleBarView);
+        TitleBarView titleBarView = (TitleBarView) findViewById(R.id.titleBarView);
         titleBarView.setStatusBar(this);
         titleBarView.setOnRightImgClick(new TitleBarView.OnRightImgClick() {
             @Override
@@ -147,9 +147,9 @@ public class CheckActivity extends BaseActivity implements OnItemLongClickListen
             dialog = new Dialog(this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             View contentView = View.inflate(this, R.layout.dialog_add_check_item, null);
-            cash = contentView.findViewById(R.id.et_cash);
-            desc = contentView.findViewById(R.id.et_desc);
-            type = contentView.findViewById(R.id.tv_type);
+            cash = (EditText) contentView.findViewById(R.id.et_cash);
+            desc = (EditText) contentView.findViewById(R.id.et_desc);
+            type = (TextView) contentView.findViewById(R.id.tv_type);
             type.setOnClickListener(this);
             contentView.findViewById(R.id.commit).setOnClickListener(this);
             dialog.addContentView(contentView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));

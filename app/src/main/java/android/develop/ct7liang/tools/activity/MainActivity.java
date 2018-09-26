@@ -24,7 +24,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void setStatusBar() {
-        TitleBarView titleBarView = findViewById(R.id.titleBarView);
+        TitleBarView titleBarView = (TitleBarView) findViewById(R.id.titleBarView);
         titleBarView.setStatusBar(this);
     }
 

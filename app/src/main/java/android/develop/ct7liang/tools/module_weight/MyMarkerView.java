@@ -23,7 +23,7 @@ public class MyMarkerView extends MarkerView {
      */
     public MyMarkerView(Context context) {
         super(context, R.layout.my_marker_view);
-        tv = findViewById(R.id.tv);
+        tv = (TextView) findViewById(R.id.tv);
     }
 
     @Override

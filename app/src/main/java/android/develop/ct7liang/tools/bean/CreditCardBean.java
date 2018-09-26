@@ -16,6 +16,8 @@ public class CreditCardBean {
     @NotNull
     public int tag;
     @NotNull
+    public String name;
+    @NotNull
     public String cardNum;
     @NotNull
     public int startDay;
@@ -27,11 +29,13 @@ public class CreditCardBean {
     public int cardYear;
     @NotNull
     public int cardMonth;
-    @Generated(hash = 229964933)
-    public CreditCardBean(Long id, int tag, @NotNull String cardNum, int startDay,
-            int endDay, int returnDay, int cardYear, int cardMonth) {
+    @Generated(hash = 1363520629)
+    public CreditCardBean(Long id, int tag, @NotNull String name,
+            @NotNull String cardNum, int startDay, int endDay, int returnDay,
+            int cardYear, int cardMonth) {
         this.id = id;
         this.tag = tag;
+        this.name = name;
         this.cardNum = cardNum;
         this.startDay = startDay;
         this.endDay = endDay;
@@ -53,6 +57,12 @@ public class CreditCardBean {
     }
     public void setTag(int tag) {
         this.tag = tag;
+    }
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
     public String getCardNum() {
         return this.cardNum;
@@ -90,4 +100,6 @@ public class CreditCardBean {
     public void setCardMonth(int cardMonth) {
         this.cardMonth = cardMonth;
     }
+
+   
 }

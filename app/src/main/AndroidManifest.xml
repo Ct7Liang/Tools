@@ -42,7 +42,8 @@
         </receiver>
 
         <activity android:name=".module_creditCard.CreditCardActivity" />
-        <activity android:name=".module_creditCard.CreditCardAddActivity"></activity>
+        <activity android:name=".module_creditCard.CreditCardAddActivity" />
+        <activity android:name=".module_creditCard.CreditCardEditActivity"></activity>
     </application>
 
 </manifest>

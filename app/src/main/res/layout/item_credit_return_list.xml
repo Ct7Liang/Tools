@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="9dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="账单周期:"
+            android:textSize="12sp"
+            android:layout_marginLeft="15dp"
+            android:gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/return_recycle"
+            android:text="20180619-20180718"
+            android:layout_marginLeft="10dp"
+            android:textSize="11sp"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="还款日期:"
+            android:textSize="12sp"
+            android:layout_marginLeft="15dp"
+            android:gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/return_day"
+            android:text="20180801"
+            android:layout_marginLeft="10dp"
+            android:textSize="11sp"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="最迟还款:"
+            android:textSize="12sp"
+            android:layout_marginLeft="15dp"
+            android:gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/return_end_day"
+            android:text="20180809"
+            android:layout_marginLeft="10dp"
+            android:textSize="11sp"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="9dp"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#DDDDDD"/>
+
+</LinearLayout>

@@ -39,7 +39,7 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void setStatusBar() {
-        TitleBarView titleBarView = findViewById(R.id.titleBarView);
+        TitleBarView titleBarView = (TitleBarView) findViewById(R.id.titleBarView);
         titleBarView.setStatusBar(this);
     }
 
@@ -50,9 +50,9 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        input_weight = findViewById(R.id.input_weight);
-        input_max = findViewById(R.id.input_max);
-        input_min = findViewById(R.id.input_min);
+        input_weight = (EditText) findViewById(R.id.input_weight);
+        input_max = (EditText) findViewById(R.id.input_max);
+        input_min = (EditText) findViewById(R.id.input_min);
         findViewById(R.id.btn_weight).setOnClickListener(this);
         findViewById(R.id.btn_max).setOnClickListener(this);
         findViewById(R.id.btn_min).setOnClickListener(this);

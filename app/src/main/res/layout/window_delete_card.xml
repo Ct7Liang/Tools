@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/parent">
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        android:background="#FFFFFF">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:text="是否确定删除这张银行卡?"
+            android:textColor="#333333"
+            android:gravity="center"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#eeeeee"/>
+        <EditText
+            android:hint="请输入持卡人姓名"
+            android:paddingLeft="10dp"
+            android:textSize="13sp"
+            android:id="@+id/name"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#eeeeee"/>
+        <EditText
+            android:inputType="number"
+            android:hint="请输入卡号"
+            android:paddingLeft="10dp"
+            android:textSize="13sp"
+            android:id="@+id/number"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#eeeeee"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                android:text="取消"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:background="@drawable/commit_bg"/>
+            <TextView
+                android:id="@+id/commit"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:text="确定"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:background="@drawable/commit_bg"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -50,8 +50,8 @@ public class MonthCheckAdapter extends BaseRecyclerViewAdapter {
         private TextView tv_cash;
         public ItemViewHolder(View itemView) {
             super(itemView);
-            tv_time = itemView.findViewById(R.id.tv_time);
-            tv_cash = itemView.findViewById(R.id.tv_cash);
+            tv_time = (TextView) itemView.findViewById(R.id.tv_time);
+            tv_cash = (TextView) itemView.findViewById(R.id.tv_cash);
             itemView.setOnClickListener(this);
         }
         @Override

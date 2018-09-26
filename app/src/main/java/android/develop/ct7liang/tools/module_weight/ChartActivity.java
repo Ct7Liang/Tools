@@ -41,7 +41,7 @@ public class ChartActivity extends BaseActivity {
     public void findView() {
         setOrientation(false);
         setFullScreen();
-        lineChart = findViewById(R.id.line_chart);
+        lineChart = (LineChart) findViewById(R.id.line_chart);
         initStatusBar();
     }
 

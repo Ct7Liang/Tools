@@ -67,9 +67,9 @@ public class CheckAdapter extends BaseRecyclerViewAdapter {
         public ViewHolderIn(View itemView) {
             super(itemView);
             itemView.setOnLongClickListener(this);
-            tv_desc = itemView.findViewById(R.id.tv_desc);
-            tv_time = itemView.findViewById(R.id.tv_time);
-            tv_cash = itemView.findViewById(R.id.tv_cash);
+            tv_desc = (TextView) itemView.findViewById(R.id.tv_desc);
+            tv_time = (TextView) itemView.findViewById(R.id.tv_time);
+            tv_cash = (TextView) itemView.findViewById(R.id.tv_cash);
         }
         @Override
         public boolean onLongClick(View view) {
@@ -87,9 +87,9 @@ public class CheckAdapter extends BaseRecyclerViewAdapter {
         public ViewHolderOut(View itemView) {
             super(itemView);
             itemView.setOnLongClickListener(this);
-            tv_desc = itemView.findViewById(R.id.tv_desc);
-            tv_time = itemView.findViewById(R.id.tv_time);
-            tv_cash = itemView.findViewById(R.id.tv_cash);
+            tv_desc = (TextView) itemView.findViewById(R.id.tv_desc);
+            tv_time = (TextView) itemView.findViewById(R.id.tv_time);
+            tv_cash = (TextView) itemView.findViewById(R.id.tv_cash);
         }
         @Override
         public boolean onLongClick(View view) {

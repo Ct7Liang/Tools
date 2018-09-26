@@ -41,7 +41,7 @@ public class WidgetSettingActivity extends BaseActivity {
 
     @Override
     protected void setStatusBar() {
-        TitleBarView titleBarView = findViewById(R.id.titleBarView);
+        TitleBarView titleBarView = (TitleBarView) findViewById(R.id.titleBarView);
         titleBarView.setStatusBar(this);
     }
 
@@ -53,10 +53,10 @@ public class WidgetSettingActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        editText = findViewById(R.id.edit);
-        editText1 = findViewById(R.id.edit1);
+        editText = (EditText) findViewById(R.id.edit);
+        editText1 = (EditText) findViewById(R.id.edit1);
         findViewById(R.id.btn).setOnClickListener(this);
-        listView = findViewById(R.id.list_view);
+        listView = (ListView) findViewById(R.id.list_view);
         adapter = new MyAdapter();
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

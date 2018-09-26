@@ -4,6 +4,7 @@ import android.content.Context;
 import android.develop.ct7liang.tools.R;
 import android.develop.ct7liang.tools.bean.CreditCardBean;
 import android.develop.ct7liang.tools.module_creditCard.ziyuan.CreditInfo;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,19 +18,16 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2018-09-18.
- *  6225 7686 2681 4048   22 21 9  22 9
- *  6222 5306 2189 2269   19 18 12 23 3
+ *
  */
 public class CreditListAdapter extends BaseRecyclerViewAdapter {
 
     private final CreditInfo instance;
-    private Context context;
     private List<CreditCardBean> list;
     private final int[] tags;
 
     public CreditListAdapter(Context context, List<CreditCardBean> list) {
         super(context);
-        this.context = context;
         this.list = list;
         instance = CreditInfo.getInstance();
         tags = instance.tag;
@@ -43,11 +41,16 @@ public class CreditListAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        CreditCardBean creditCardBean = list.get(position);
         if (holder instanceof CreditListViewHolder){
-            int tag = list.get(position).getTag();
-            int i = Arrays.binarySearch(tags, tag);
+            int i = Arrays.binarySearch(tags, creditCardBean.getTag());
             ((CreditListViewHolder) holder).img.setImageResource(instance.bank_icon[i]);
             ((CreditListViewHolder) holder).tv.setText(instance.bank_name[i]);
+            if (position != onClickPosition){
+                ((CreditListViewHolder) holder).parent.setBackgroundColor(Color.parseColor("#F7F7F7"));
+            }else{
+                ((CreditListViewHolder) holder).parent.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            }
         }
     }
 
@@ -56,13 +59,24 @@ public class CreditListAdapter extends BaseRecyclerViewAdapter {
         return list.size();
     }
 
+    private int onClickPosition = 0;
+    /**
+     * 设置被点击的位置的颜色
+     * @param i
+     */
+    public void setOnClickPosition(int i) {
+        onClickPosition = i;
+    }
+
     private class CreditListViewHolder extends ContentViewHolder{
-        public ImageView img;
-        public TextView tv;
-        public CreditListViewHolder(View itemView) {
+        ImageView img;
+        TextView tv;
+        View parent;
+        CreditListViewHolder(View itemView) {
             super(itemView);
-            img = itemView.findViewById(R.id.credit_img);
-            tv = itemView.findViewById(R.id.credit_text);
+            img = (ImageView) itemView.findViewById(R.id.credit_img);
+            tv = (TextView) itemView.findViewById(R.id.credit_text);
+            parent = itemView.findViewById(R.id.parent);
             itemView.setOnClickListener(this);
         }
 

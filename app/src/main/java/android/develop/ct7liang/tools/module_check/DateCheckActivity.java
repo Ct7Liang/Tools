@@ -25,9 +25,9 @@ public class DateCheckActivity extends BaseActivity {
 
     @Override
     protected void setStatusBar() {
-        TitleBarView titleBarView = findViewById(R.id.titleBarView);
+        TitleBarView titleBarView = (TitleBarView) findViewById(R.id.titleBarView);
         titleBarView.setStatusBar(this);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
     }
 

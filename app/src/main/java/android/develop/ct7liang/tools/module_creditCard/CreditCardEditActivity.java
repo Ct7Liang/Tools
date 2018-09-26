@@ -1,5 +1,7 @@
 package android.develop.ct7liang.tools.module_creditCard;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.develop.ct7liang.tools.R;
 import android.develop.ct7liang.tools.base.BaseActivity;
 import android.develop.ct7liang.tools.bean.CreditCardBean;
@@ -18,7 +20,9 @@ import android.widget.TextView;
 
 import com.ct7liang.tangyuan.utils.ScreenUtil;
 import com.ct7liang.tangyuan.utils.ToastUtils;
+import com.ct7liang.tangyuan.utils.window.BottomWindow;
 import com.ct7liang.tangyuan.view_titlebar.TitleBarView;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,7 @@ import java.util.List;
 import tools.greendao.gen.CreditCardBeanDao;
 import tools.greendao.gen.GreenDaoHelper;
 
-public class CreditCardAddActivity extends BaseActivity {
+public class CreditCardEditActivity extends BaseActivity {
 
     private PopupWindow popupWindow;
     private TextView bank_name;
@@ -39,13 +43,14 @@ public class CreditCardAddActivity extends BaseActivity {
     private EditText cardYear;
     private EditText cardMonth;
     private EditText userName;
-    private int position = -1;
+    private int position;
     private CreditCardBeanDao creditCardBeanDao;
     private ArrayList<String> numList;
+    private CreditCardBean creditCardBean;
 
     @Override
     public int setLayout() {
-        return R.layout.activity_credit_card_add;
+        return R.layout.activity_credit_card_edit;
     }
 
     @Override
@@ -70,19 +75,36 @@ public class CreditCardAddActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        String data = getIntent().getStringExtra("data");
+        creditCardBean = new Gson().fromJson(data, CreditCardBean.class);
+        position = creditCardBean.getTag();
         creditInfo = CreditInfo.getInstance();
         creditCardBeanDao = GreenDaoHelper.getDaoSession().getCreditCardBeanDao();
         List<CreditCardBean> creditCardBeen = creditCardBeanDao.loadAll();
         numList = new ArrayList<>();
         for (int i = 0; i < creditCardBeen.size(); i++) {
-            numList.add(creditCardBeen.get(i).cardNum);
+            String cardNum = creditCardBeen.get(i).cardNum;
+            if (!cardNum.equals(creditCardBean.cardNum)){
+                numList.add(cardNum);
+            }
         }
     }
 
     @Override
     public void initView() {
+        int tag = creditCardBean.getTag();
+        bank_name.setText(creditInfo.bank_name[tag]);
+        bank_icon.setImageResource(creditInfo.bank_icon[tag]);
+        cardNum.setText(creditCardBean.cardNum);
+        startDay.setText(creditCardBean.startDay+"");
+        endDay.setText(creditCardBean.endDay+"");
+        returnDay.setText(creditCardBean.returnDay+"");
+        cardYear.setText(creditCardBean.cardYear+"");
+        cardMonth.setText(creditCardBean.cardMonth+"");
+        userName.setText(creditCardBean.name);
         bank_name.setOnClickListener(this);
         findViewById(R.id.commit).setOnClickListener(this);
+        findViewById(R.id.delete).setOnClickListener(this);
     }
 
     @Override
@@ -91,8 +113,8 @@ public class CreditCardAddActivity extends BaseActivity {
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()){
+    public void onClick(View v) {
+        switch (v.getId()){
             case R.id.bank_name:
                 showPopupWindow();
                 break;
@@ -114,19 +136,55 @@ public class CreditCardAddActivity extends BaseActivity {
                     ToastUtils.showStatic(mAct, "此卡已存在");
                     return;
                 }
-                CreditCardBean cardBean = new CreditCardBean(
-                        null, creditInfo.tag[position], name,num,
-                        Integer.parseInt(dayStart),
-                        Integer.parseInt(dayEnd),
-                        Integer.parseInt(dayReturn),
-                        Integer.parseInt(endYear),
-                        Integer.parseInt(endMonth)
-                );
-                creditCardBeanDao.insert(cardBean);
-                ToastUtils.showStatic(mAct, "信用卡添加成功");
+                creditCardBean.setTag(creditInfo.tag[position]);
+                creditCardBean.setName(name);
+                creditCardBean.setCardNum(num);
+                creditCardBean.setStartDay(Integer.parseInt(dayStart));
+                creditCardBean.setEndDay(Integer.parseInt(dayEnd));
+                creditCardBean.setReturnDay(Integer.parseInt(dayReturn));
+                creditCardBean.setCardYear(Integer.parseInt(endYear));
+                creditCardBean.setCardMonth(Integer.parseInt(endMonth));
+                creditCardBeanDao.update(creditCardBean);
+                ToastUtils.showStatic(mAct, "信用卡信息修改成功");
+                Intent i = new Intent();
+                i.putExtra("data", new Gson().toJson(creditCardBean));
+                setResult(112, i);
                 finish();
                 break;
+            case R.id.delete:
+                showDialog();
+                break;
         }
+    }
+
+    private void showDialog(){
+        BottomWindow.getInstance().show(mAct, R.layout.window_delete_card, -1, new BottomWindow.ViewSetting() {
+            @Override
+            public void onSetting(final Dialog dialog, View view) {
+                final EditText et_name = (EditText) view.findViewById(R.id.name);
+                final EditText et_number = (EditText) view.findViewById(R.id.number);
+                view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                view.findViewById(R.id.commit).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!et_name.getText().toString().equals(creditCardBean.getName())||
+                                !et_number.getText().toString().equals(creditCardBean.getCardNum())){
+                            ToastUtils.showStatic(mAct, "请输入正确的信息,再进行操作");
+                            return;
+                        }
+                        creditCardBeanDao.delete(creditCardBean);
+                        Intent i1 = new Intent();
+                        setResult(113, i1);
+                        finish();
+                    }
+                });
+            }
+        });
     }
 
     private void showPopupWindow(){
@@ -157,7 +215,7 @@ public class CreditCardAddActivity extends BaseActivity {
         }
     }
 
-    private class MyAdapter extends BaseAdapter{
+    private class MyAdapter extends BaseAdapter {
         private CreditInfo creditInfo;
         public MyAdapter(){
             creditInfo = CreditInfo.getInstance();

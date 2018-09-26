@@ -26,12 +26,13 @@ public class CreditCardBeanDao extends AbstractDao<CreditCardBean, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Tag = new Property(1, int.class, "tag", false, "TAG");
-        public final static Property CardNum = new Property(2, String.class, "cardNum", false, "CARD_NUM");
-        public final static Property StartDay = new Property(3, int.class, "startDay", false, "START_DAY");
-        public final static Property EndDay = new Property(4, int.class, "endDay", false, "END_DAY");
-        public final static Property ReturnDay = new Property(5, int.class, "returnDay", false, "RETURN_DAY");
-        public final static Property CardYear = new Property(6, int.class, "cardYear", false, "CARD_YEAR");
-        public final static Property CardMonth = new Property(7, int.class, "cardMonth", false, "CARD_MONTH");
+        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
+        public final static Property CardNum = new Property(3, String.class, "cardNum", false, "CARD_NUM");
+        public final static Property StartDay = new Property(4, int.class, "startDay", false, "START_DAY");
+        public final static Property EndDay = new Property(5, int.class, "endDay", false, "END_DAY");
+        public final static Property ReturnDay = new Property(6, int.class, "returnDay", false, "RETURN_DAY");
+        public final static Property CardYear = new Property(7, int.class, "cardYear", false, "CARD_YEAR");
+        public final static Property CardMonth = new Property(8, int.class, "cardMonth", false, "CARD_MONTH");
     }
 
 
@@ -49,12 +50,13 @@ public class CreditCardBeanDao extends AbstractDao<CreditCardBean, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"CREDIT_CARD_BEAN\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"TAG\" INTEGER NOT NULL ," + // 1: tag
-                "\"CARD_NUM\" TEXT NOT NULL ," + // 2: cardNum
-                "\"START_DAY\" INTEGER NOT NULL ," + // 3: startDay
-                "\"END_DAY\" INTEGER NOT NULL ," + // 4: endDay
-                "\"RETURN_DAY\" INTEGER NOT NULL ," + // 5: returnDay
-                "\"CARD_YEAR\" INTEGER NOT NULL ," + // 6: cardYear
-                "\"CARD_MONTH\" INTEGER NOT NULL );"); // 7: cardMonth
+                "\"NAME\" TEXT NOT NULL ," + // 2: name
+                "\"CARD_NUM\" TEXT NOT NULL ," + // 3: cardNum
+                "\"START_DAY\" INTEGER NOT NULL ," + // 4: startDay
+                "\"END_DAY\" INTEGER NOT NULL ," + // 5: endDay
+                "\"RETURN_DAY\" INTEGER NOT NULL ," + // 6: returnDay
+                "\"CARD_YEAR\" INTEGER NOT NULL ," + // 7: cardYear
+                "\"CARD_MONTH\" INTEGER NOT NULL );"); // 8: cardMonth
     }
 
     /** Drops the underlying database table. */
@@ -72,12 +74,13 @@ public class CreditCardBeanDao extends AbstractDao<CreditCardBean, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getTag());
-        stmt.bindString(3, entity.getCardNum());
-        stmt.bindLong(4, entity.getStartDay());
-        stmt.bindLong(5, entity.getEndDay());
-        stmt.bindLong(6, entity.getReturnDay());
-        stmt.bindLong(7, entity.getCardYear());
-        stmt.bindLong(8, entity.getCardMonth());
+        stmt.bindString(3, entity.getName());
+        stmt.bindString(4, entity.getCardNum());
+        stmt.bindLong(5, entity.getStartDay());
+        stmt.bindLong(6, entity.getEndDay());
+        stmt.bindLong(7, entity.getReturnDay());
+        stmt.bindLong(8, entity.getCardYear());
+        stmt.bindLong(9, entity.getCardMonth());
     }
 
     @Override
@@ -89,12 +92,13 @@ public class CreditCardBeanDao extends AbstractDao<CreditCardBean, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getTag());
-        stmt.bindString(3, entity.getCardNum());
-        stmt.bindLong(4, entity.getStartDay());
-        stmt.bindLong(5, entity.getEndDay());
-        stmt.bindLong(6, entity.getReturnDay());
-        stmt.bindLong(7, entity.getCardYear());
-        stmt.bindLong(8, entity.getCardMonth());
+        stmt.bindString(3, entity.getName());
+        stmt.bindString(4, entity.getCardNum());
+        stmt.bindLong(5, entity.getStartDay());
+        stmt.bindLong(6, entity.getEndDay());
+        stmt.bindLong(7, entity.getReturnDay());
+        stmt.bindLong(8, entity.getCardYear());
+        stmt.bindLong(9, entity.getCardMonth());
     }
 
     @Override
@@ -107,12 +111,13 @@ public class CreditCardBeanDao extends AbstractDao<CreditCardBean, Long> {
         CreditCardBean entity = new CreditCardBean( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getInt(offset + 1), // tag
-            cursor.getString(offset + 2), // cardNum
-            cursor.getInt(offset + 3), // startDay
-            cursor.getInt(offset + 4), // endDay
-            cursor.getInt(offset + 5), // returnDay
-            cursor.getInt(offset + 6), // cardYear
-            cursor.getInt(offset + 7) // cardMonth
+            cursor.getString(offset + 2), // name
+            cursor.getString(offset + 3), // cardNum
+            cursor.getInt(offset + 4), // startDay
+            cursor.getInt(offset + 5), // endDay
+            cursor.getInt(offset + 6), // returnDay
+            cursor.getInt(offset + 7), // cardYear
+            cursor.getInt(offset + 8) // cardMonth
         );
         return entity;
     }
@@ -121,12 +126,13 @@ public class CreditCardBeanDao extends AbstractDao<CreditCardBean, Long> {
     public void readEntity(Cursor cursor, CreditCardBean entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setTag(cursor.getInt(offset + 1));
-        entity.setCardNum(cursor.getString(offset + 2));
-        entity.setStartDay(cursor.getInt(offset + 3));
-        entity.setEndDay(cursor.getInt(offset + 4));
-        entity.setReturnDay(cursor.getInt(offset + 5));
-        entity.setCardYear(cursor.getInt(offset + 6));
-        entity.setCardMonth(cursor.getInt(offset + 7));
+        entity.setName(cursor.getString(offset + 2));
+        entity.setCardNum(cursor.getString(offset + 3));
+        entity.setStartDay(cursor.getInt(offset + 4));
+        entity.setEndDay(cursor.getInt(offset + 5));
+        entity.setReturnDay(cursor.getInt(offset + 6));
+        entity.setCardYear(cursor.getInt(offset + 7));
+        entity.setCardMonth(cursor.getInt(offset + 8));
      }
     
     @Override
